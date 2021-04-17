@@ -1,4 +1,4 @@
-//TODO:Fix Gear meshing
+//TODO:Test Code
 
 package org.firstinspires.ftc.teamcode;
 
@@ -88,7 +88,7 @@ public class finalAutonomous extends LinearOpMode {
                         strafeLeft(1500);
                         wobble.setPosition(1.0);
                         sleep(2000);
-                        move(-0.4, 3200);
+                        move(-0.4, 3000);
                         break;
                     default:
                         break;
