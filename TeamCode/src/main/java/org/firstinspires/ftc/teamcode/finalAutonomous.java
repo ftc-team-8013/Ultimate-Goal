@@ -35,11 +35,11 @@ public class finalAutonomous extends LinearOpMode {
     private DcMotor backRight;
     private DcMotor shooter;
     private DcMotor belt;
+    private DcMotor intake;
 
     private Servo wobble;
 
-    private boolean shouldShoot = true
-            ;
+    private boolean shouldShoot = true;
     private boolean shouldDrive = true;
     private boolean shouldDetectRings = true;
     private boolean ringDetectTestMode = false;
@@ -61,13 +61,12 @@ public class finalAutonomous extends LinearOpMode {
 
         int zone;
         if (opModeIsActive()) {
-            shoot(0.75);
+            shoot(0.73);
 
             move(-0.4, 500);
             sleep(500);
             strafeLeft(500);
             do {
-                //zone = determineZone();
                 zone = calculateZone();
                 switch (zone) {
                     case 0:
@@ -77,10 +76,16 @@ public class finalAutonomous extends LinearOpMode {
                         break;
                     case 1:
                         strafeRight(1500);
-                        move(0.4, 4500);
+                        move(0.8, 2000);
                         wobble.setPosition(1.0);
                         sleep(2000);
                         move(-0.4, 1000);
+                        strafeLeft(1900);
+                        move(-0.8, 500);
+                        belt.setPower(1);
+                        intake.setPower(1);
+                        move(-0.8, 500);
+                        move(0.8, 1000);
                         break;
                     case 2:
                         strafeRight(1500);
@@ -147,7 +152,7 @@ public class finalAutonomous extends LinearOpMode {
         if (shouldShoot) {
             shooter.setPower(power);
             sleep(1500);
-            belt.setPower(.5);
+            belt.setPower(.75);
             sleep(5500);
             shooter.setPower(0);
             belt.setPower(0);
@@ -155,7 +160,7 @@ public class finalAutonomous extends LinearOpMode {
     }
 
     public int calculateZone() {
-        int samples = 10;
+        int samples = 17;
         telemetry.addData(">", "Taking " + samples + " samples...");
         telemetry.update();
 
@@ -173,7 +178,7 @@ public class finalAutonomous extends LinearOpMode {
                 default: zones[3]++;
                     break;
             }
-            sleep(200);
+            sleep(203);
         }
 
         int largestIndex = 0;
@@ -256,9 +261,11 @@ public class finalAutonomous extends LinearOpMode {
         if (shouldShoot) {
             shooter = hardwareMap.get(DcMotor.class, "buzz");
             belt = hardwareMap.get(DcMotor.class, "belt");
+            intake = hardwareMap.get(DcMotor.class, "intake");
 
             shooter.setDirection(DcMotorSimple.Direction.FORWARD);
             belt.setDirection(DcMotorSimple.Direction.REVERSE);
+            intake.setDirection(DcMotorSimple.Direction.REVERSE);
         }
     }
 
@@ -281,8 +288,7 @@ public class finalAutonomous extends LinearOpMode {
      * Initialize the TensorFlow Object Detection engine.
      */
     private void initTensorFlowObjDetector() {
-        int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
-                "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
         tfodParameters.minResultConfidence = 0.8f;
         tensorFlowObjDetector = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);

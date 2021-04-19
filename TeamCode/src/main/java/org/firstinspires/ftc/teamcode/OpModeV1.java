@@ -46,7 +46,6 @@ public class OpModeV1 extends LinearOpMode {
 
         shooter.setDirection(DcMotorSimple.Direction.FORWARD);
         intake.setDirection(DcMotorSimple.Direction.REVERSE);
-        belt.setDirection(DcMotorSimple.Direction.REVERSE);
 
         waitForStart();
 
@@ -88,51 +87,28 @@ public class OpModeV1 extends LinearOpMode {
             armDown = gamepad1.left_trigger;
 
             // Driving
-            if (armDrive <= 0.25) {
-                if (strafeRight) {
-                    frontLeft.setPower(-0.5);
-                    backLeft.setPower(0.5);
-                    frontRight.setPower(0.5);
-                    backRight.setPower(-0.5);
-                } else if (strafeLeft) {
-                    frontLeft.setPower(0.5);
-                    backLeft.setPower(-0.5);
-                    frontRight.setPower(-0.5);
-                    backRight.setPower(0.5);
-                } else {
-                    frontLeft.setPower(throttle);
-                    frontRight.setPower(throttle);
-                    backLeft.setPower(throttle);
-                    backRight.setPower(throttle);
+            if (strafeRight) {
+                frontLeft.setPower(-0.5);
+                backLeft.setPower(0.5);
+                frontRight.setPower(0.5);
+                backRight.setPower(-0.5);
+            } else if (strafeLeft) {
+                frontLeft.setPower(0.5);
+                backLeft.setPower(-0.5);
+                frontRight.setPower(-0.5);
+                backRight.setPower(0.5);
+            } else {
+                frontLeft.setPower(throttle);
+                frontRight.setPower(throttle);
+                backLeft.setPower(throttle);
+                backRight.setPower(throttle);
 
-                    frontLeft.setPower(-pivot);
-                    frontRight.setPower(pivot);
-                    backLeft.setPower(-pivot);
-                    backRight.setPower(pivot);
-                }
-            }else if (armDrive > 0.25){
-                if (strafeRight) {
-                    frontLeft.setPower(0.5);
-                    backLeft.setPower(-0.5);
-                    frontRight.setPower(-0.5);
-                    backRight.setPower(0.5);
-                } else if (strafeLeft) {
-                    frontLeft.setPower(-0.5);
-                    backLeft.setPower(0.5);
-                    frontRight.setPower(0.5);
-                    backRight.setPower(-0.5);
-                } else {
-                    frontLeft.setPower(-throttle);
-                    frontRight.setPower(-throttle);
-                    backLeft.setPower(-throttle);
-                    backRight.setPower(-throttle);
-
-                    frontLeft.setPower(pivot);
-                    frontRight.setPower(-pivot);
-                    backLeft.setPower(pivot);
-                    backRight.setPower(-pivot);
-                }
+                frontLeft.setPower(-pivot);
+                frontRight.setPower(pivot);
+                backLeft.setPower(-pivot);
+                backRight.setPower(pivot);
             }
+
 
             if (shooterPower > 0){
                 if (powerA){
