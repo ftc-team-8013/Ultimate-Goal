@@ -52,7 +52,6 @@ public class OpModeV1 extends LinearOpMode {
         // Variable initialization
         double throttle;
         double pivot;
-        double armDrive;
         boolean strafeRight;
         boolean strafeLeft;
 
@@ -73,7 +72,6 @@ public class OpModeV1 extends LinearOpMode {
             pivot = gamepad1.left_stick_x;
             strafeRight = gamepad1.right_bumper;
             strafeLeft = gamepad1.left_bumper;
-            armDrive = gamepad1.right_trigger;
 
             beltPower = gamepad2.left_stick_y;
             shooterPower = gamepad2.right_trigger;
@@ -116,7 +114,7 @@ public class OpModeV1 extends LinearOpMode {
                 }else if (powerB){
                     shooter.setPower(0.8);
                 }else if (powerX){
-                    shooter.setPower(0.5);
+                    shooter.setPower(0.7);
                 }else if (powerY){
                     shooter.setPower(0.75);
                 }
@@ -129,7 +127,7 @@ public class OpModeV1 extends LinearOpMode {
                 intake.setPower(0);
             }
             if (beltPower > 0){
-                belt.setPower(0.5);
+                belt.setPower(0.75);
             }else if(beltPower<0){
                 belt.setPower(-0.5);
             }else{
