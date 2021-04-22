@@ -62,6 +62,7 @@ public class OpModeV1 extends LinearOpMode {
         boolean powerX;
         boolean powerY;
         boolean intakePower;
+        boolean reverseIntakePower;
 
         double armUp;
         double armDown;
@@ -80,6 +81,7 @@ public class OpModeV1 extends LinearOpMode {
             powerX = gamepad2.x;
             powerY = gamepad2.y;
             intakePower = gamepad2.left_bumper;
+            reverseIntakePower = gamepad2.right_bumper;
 
             armUp = gamepad1.right_trigger;
             armDown = gamepad1.left_trigger;
@@ -114,30 +116,33 @@ public class OpModeV1 extends LinearOpMode {
                 }else if (powerB){
                     shooter.setPower(0.8);
                 }else if (powerX){
-                    shooter.setPower(0.7);
+                    shooter.setPower(0.5);
                 }else if (powerY){
                     shooter.setPower(0.75);
                 }
+
             }else{
                 shooter.setPower(0);
             }
             if (intakePower){
                 intake.setPower(.5);
+            }else if (reverseIntakePower){
+                intake.setPower(-0.5);
             }else{
                 intake.setPower(0);
             }
             if (beltPower > 0){
-                belt.setPower(0.75);
+                belt.setPower(0.5);
             }else if(beltPower<0){
-                belt.setPower(-0.5);
+                belt.setPower(-0.75);
             }else{
                 belt.setPower(0);
             }
 
             if (armUp > 0 && armUp < 0.5){
                 arm.setPower(armUp);
-            }else if (armUp >= 0.5){
-                arm.setPower(0.5);
+            }else if (armUp >= 0.75){
+                arm.setPower(0.75);
             }else if (armDown > 0){
                 arm.setPower(-armDown);
             }else{
