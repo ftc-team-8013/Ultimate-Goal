@@ -114,9 +114,9 @@ public class OpModeV1 extends LinearOpMode {
                 if (powerA){
                     shooter.setPower(1);
                 }else if (powerB){
-                    shooter.setPower(0.8);
+                    shooter.setPower(0.6);
                 }else if (powerX){
-                    shooter.setPower(0.5);
+                    shooter.setPower(0.65);
                 }else if (powerY){
                     shooter.setPower(0.75);
                 }
