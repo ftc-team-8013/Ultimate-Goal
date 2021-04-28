@@ -61,7 +61,7 @@ public class finalAutonomous extends LinearOpMode {
 
         int zone;
         if (opModeIsActive()) {
-            shoot(0.74);
+            shoot(0.72);
 
             move(-0.4, 500);
             sleep(500);
@@ -89,7 +89,7 @@ public class finalAutonomous extends LinearOpMode {
                         break;
                     case 2:
                         strafeRight(1500);
-                        move(0.4, 7500);
+                        move(0.8, 3000);
                         strafeLeft(1500);
                         wobble.setPosition(1.0);
                         sleep(2000);

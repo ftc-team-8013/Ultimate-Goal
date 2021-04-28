@@ -88,15 +88,15 @@ public class OpModeV1 extends LinearOpMode {
 
             // Driving
             if (strafeRight) {
-                frontLeft.setPower(-0.5);
-                backLeft.setPower(0.5);
-                frontRight.setPower(0.5);
-                backRight.setPower(-0.5);
+                frontLeft.setPower(-0.75);
+                backLeft.setPower(0.75);
+                frontRight.setPower(0.75);
+                backRight.setPower(-0.75);
             } else if (strafeLeft) {
-                frontLeft.setPower(0.5);
-                backLeft.setPower(-0.5);
-                frontRight.setPower(-0.5);
-                backRight.setPower(0.5);
+                frontLeft.setPower(0.75);
+                backLeft.setPower(-0.75);
+                frontRight.setPower(-0.75);
+                backRight.setPower(0.75);
             } else {
                 frontLeft.setPower(throttle);
                 frontRight.setPower(throttle);
