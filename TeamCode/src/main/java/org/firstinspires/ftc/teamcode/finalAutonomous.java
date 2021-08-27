@@ -61,7 +61,7 @@ public class finalAutonomous extends LinearOpMode {
 
         int zone;
         if (opModeIsActive()) {
-            shoot(0.73);
+            shoot(0.74);
 
             move(-0.4, 500);
             sleep(500);
@@ -151,7 +151,7 @@ public class finalAutonomous extends LinearOpMode {
     public void shoot(double power) {
         if (shouldShoot) {
             shooter.setPower(power);
-            sleep(1500);
+            sleep(2000);
             belt.setPower(.75);
             sleep(5500);
             shooter.setPower(0);
